@@ -4,7 +4,7 @@ Static portfolio site ready for GitHub Pages or any static host.
 
 ## Files
 
-- `sushanth-kathirvelu-portfolio.html` — main homepage
+- `index.html` — main homepage
 - `sushanth-kathirvelu-projects.html` — project case studies page
 - `assets/Sushanth_Kathirvelu_Resume.pdf` — downloadable resume
 
