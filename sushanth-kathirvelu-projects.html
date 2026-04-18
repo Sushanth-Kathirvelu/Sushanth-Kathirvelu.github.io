@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sushanth Kathirvelu — Projects</title>
+  <meta name="description"
+    content="Case studies for Sushanth Kathirvelu covering recommendation systems, personalization, ETL platforms, and research work." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root,
+    [data-theme="light"] {
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.15rem);
+      --text-2xl: clamp(2rem, 1.2rem + 2vw, 3.15rem);
+      --space-2: .5rem;
+      --space-3: .75rem;
+      --space-4: 1rem;
+      --space-5: 1.25rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-10: 2.5rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --color-bg: #f4f7fa;
+      --color-surface: #fff;
+      --color-surface-2: #f8fafc;
+      --color-border: #d8e0e8;
+      --color-divider: #e7edf2;
+      --color-text: #14202b;
+      --color-text-muted: #536170;
+      --color-text-inverse: #f7fbff;
+      --color-primary: #0f5d7a;
+      --color-primary-hover: #0b4b64;
+      --color-primary-highlight: #dcecf3;
+      --radius-lg: 1rem;
+      --radius-xl: 1.5rem;
+      --radius-full: 9999px;
+      --shadow-sm: 0 1px 2px rgba(17, 30, 45, .05);
+      --shadow-md: 0 20px 50px rgba(17, 30, 45, .09);
+      --font-display: 'Newsreader', Georgia, serif;
+      --font-body: 'Manrope', system-ui, sans-serif;
+      --content: 1120px
+    }
+
+    [data-theme="dark"] {
+      --color-bg: #0f1720;
+      --color-surface: #121d27;
+      --color-surface-2: #16222d;
+      --color-border: #263746;
+      --color-divider: #1f2d39;
+      --color-text: #edf4fa;
+      --color-text-muted: #a6b6c7;
+      --color-text-inverse: #091118;
+      --color-primary: #70b7d3;
+      --color-primary-hover: #91c6db;
+      --color-primary-highlight: #17313f;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, .25);
+      --shadow-md: 0 20px 50px rgba(0, 0, 0, .26)
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      line-height: 1.65;
+      background: var(--color-bg);
+      color: var(--color-text)
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    button {
+      font: inherit;
+      background: none;
+      border: 0;
+      color: inherit;
+      cursor: pointer
+    }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--content));
+      margin: 0 auto
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: color-mix(in srgb, var(--color-bg) 88%, transparent);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--color-divider)
+    }
+
+    .header-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4)
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: var(--space-4);
+      flex-wrap: wrap
+    }
+
+    nav a {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted)
+    }
+
+    .brand {
+      font-size: var(--text-sm);
+      font-weight: 800
+    }
+
+    .chip,
+    .theme-toggle {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 var(--space-4);
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      border-radius: var(--radius-full)
+    }
+
+    .theme-toggle {
+      width: 44px;
+      padding: 0
+    }
+
+    .hero {
+      padding: var(--space-16) 0 var(--space-10)
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: .5rem .85rem;
+      border-radius: var(--radius-full);
+      background: var(--color-primary-highlight);
+      color: var(--color-primary);
+      font-size: var(--text-xs);
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-4)
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: var(--font-display);
+      line-height: 1.04;
+      letter-spacing: -.03em
+    }
+
+    h1 {
+      font-size: clamp(2.75rem, 5vw, 4.75rem);
+      max-width: 10ch
+    }
+
+    .hero p {
+      margin-top: var(--space-4);
+      max-width: 62ch;
+      color: var(--color-text-muted)
+    }
+
+    .projects {
+      display: grid;
+      gap: var(--space-6);
+      padding-bottom: var(--space-16)
+    }
+
+    .project {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
+      box-shadow: var(--shadow-sm)
+    }
+
+    .project-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-4);
+      align-items: start;
+      margin-bottom: var(--space-5)
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-4)
+    }
+
+    .pill {
+      padding: .45rem .8rem;
+      border-radius: var(--radius-full);
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      font-size: var(--text-sm)
+    }
+
+    .metric-chip {
+      padding: .65rem .9rem;
+      border-radius: var(--radius-full);
+      background: var(--color-primary-highlight);
+      color: var(--color-primary);
+      font-size: var(--text-sm);
+      font-weight: 800
+    }
+
+    .muted {
+      color: var(--color-text-muted)
+    }
+
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-6);
+      margin-top: var(--space-6)
+    }
+
+    .block {
+      padding: var(--space-5);
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-divider);
+      border-radius: var(--radius-lg)
+    }
+
+    .block h4 {
+      font-size: var(--text-sm);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--color-primary);
+      margin-bottom: var(--space-3)
+    }
+
+    ul {
+      padding-left: 1.1rem;
+      display: grid;
+      gap: var(--space-2)
+    }
+
+    li::marker {
+      color: var(--color-primary)
+    }
+
+    .summary {
+      margin-top: var(--space-5)
+    }
+
+    footer {
+      padding: var(--space-8) 0 var(--space-12);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted)
+    }
+
+    @media (max-width:860px) {
+
+      .header-inner,
+      .project-header,
+      .case-grid {
+        grid-template-columns: 1fr;
+        display: grid
+      }
+
+      .header-inner {
+        padding: var(--space-3) 0;
+        align-items: flex-start
+      }
+
+      .project {
+        padding: var(--space-6)
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner"><a href="./sushanth-kathirvelu-portfolio.html" class="brand">Sushanth
+        Kathirvelu</a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="./sushanth-kathirvelu-portfolio.html">Home</a></li>
+          <li><a href="#dynamic-slotting">Dynamic Slotting</a></li>
+          <li><a href="#deduplication">De-duplication</a></li>
+          <li><a href="#similar-items">Similar Items</a></li>
+          <li><a href="#coral-research">Research</a></li>
+        </ul>
+      </nav>
+      <div style="display:flex;gap:.75rem;align-items:center;flex-wrap:wrap"><a class="chip"
+          href="./assets/Sushanth_Kathirvelu_Resume.pdf" download>Download resume</a><button class="theme-toggle"
+          type="button" data-theme-toggle aria-label="Switch theme"></button></div>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="container"><span class="eyebrow">Case studies</span>
+        <h1>Detailed project narratives built from the resume.</h1>
+        <p> </p>
+      </div>
+    </section>
+    <section class="projects container">
+      <article class="project" id="dynamic-slotting">
+        <div class="project-header">
+          <div>
+            <h2>Dynamic Slotting</h2>
+            <p class="muted">Monetate Inc. · Enterprise recommendation orchestration</p>
+            <div class="pill-row"><span class="pill">Python</span><span class="pill">Ranking</span><span
+                class="pill">Realtime systems</span><span class="pill">Experimentation</span></div>
+          </div>
+          <div class="metric-chip">10% CTR + conversion lift</div>
+        </div>
+        <p class="summary">This initiative focused on replacing static recommendation placement with a dynamic
+          orchestration layer that could combine multiple model outputs in real time and make better placement decisions
+          based on context.</p>
+        <div class="case-grid">
+          <div class="block">
+            <h4>Problem</h4>
+            <ul>
+              <li>Static placement logic could not adapt well to changing user context.</li>
+              <li>Multiple recommendation models existed, but their outputs needed a stronger coordination layer.</li>
+              <li>The business needed measurable lifts in customer engagement and conversion.</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Approach</h4>
+            <ul>
+              <li>Architected a dynamic slotting algorithm to aggregate and rank results from multiple recommendation
+                systems.</li>
+              <li>Used weighted scoring driven by user behavior and product affinity signals.</li>
+              <li>Supported rollout through staged release and testing in client environments.</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Engineering considerations</h4>
+            <ul>
+              <li>Balanced ranking quality with realtime serving expectations.</li>
+              <li>Worked in a production setting where client impact and rollout risk had to be managed carefully.</li>
+              <li>Connected algorithm design to experimentation so results could be measured on live traffic.</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Outcome</h4>
+            <ul>
+              <li>Increased click-through and conversion by 10%.</li>
+              <li>Drove measurable revenue uplift across enterprise clients.</li>
+              <li>Created a more flexible foundation for future recommendation strategies.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+      <article class="project" id="deduplication">
+        <div class="project-header">
+          <div>
+            <h2>Cross-Placement Relevance & De-duplication</h2>
+            <p class="muted">Monetate Inc. · Recommendation quality optimization</p>
+            <div class="pill-row"><span class="pill">Low latency</span><span class="pill">Ranking
+                constraints</span><span class="pill">Diversity</span></div>
+          </div>
+          <div class="metric-chip">20% click rate gain</div>
+        </div>
+        <p class="summary">This project improved the overall customer experience by ensuring recommendation modules did
+          not repeatedly surface the same products across a page while still maintaining strong relevance.</p>
+        <div class="case-grid">
+          <div class="block">
+            <h4>Problem</h4>
+            <ul>
+              <li>Redundant recommendations across placements reduced perceived personalization.</li>
+              <li>Removing duplicates naively could hurt relevance or increase latency.</li>
+              <li>The experience needed more variety without becoming noisy or inconsistent.</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Approach</h4>
+            <ul>
+              <li>Built a cross-placement de-duplication layer for recommendation serving.</li>
+              <li>Introduced diversity-aware constraints into ranking logic.</li>
+              <li>Preserved relevance while improving freshness across personalized modules.</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Engineering considerations</h4>
+            <ul>
+              <li>Had to respect low-latency serving requirements.</li>
+              <li>Needed ranking logic that could generalize across different personalized surfaces.</li>
+              <li>Required a practical balance between business goals, user experience, and infrastructure constraints.
+              </li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Outcome</h4>
+            <ul>
+              <li>Improved recommendation quality and perceived personalization.</li>
+              <li>Increased customer click rate by 20%.</li>
+              <li>Reduced redundant product exposure across modules.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+      <article class="project" id="similar-items">
+        <div class="project-header">
+          <div>
+            <h2>Similar Items Recommendation Service</h2>
+            <p class="muted">KIBO Software Inc. · Metadata-driven cross-sell system</p>
+            <div class="pill-row"><span class="pill">Metadata modeling</span><span class="pill">Configurable
+                ranking</span><span class="pill">Enterprise commerce</span></div>
+          </div>
+          <div class="metric-chip">20% revenue contribution gain</div>
+        </div>
+        <p class="summary">This service used product metadata to power context-aware “Similar Items” recommendations for
+          commerce storefronts, helping clients drive better cross-sell performance.</p>
+        <div class="case-grid">
+          <div class="block">
+            <h4>Problem</h4>
+            <ul>
+              <li>Clients needed relevant alternatives and complements across large product catalogs.</li>
+              <li>Recommendation logic had to balance business objectives with relevance.</li>
+              <li>The system needed to work across multiple enterprise client environments.</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Approach</h4>
+            <ul>
+              <li>Architected the recommendation service using metadata such as color, category, price, and attributes.
+              </li>
+              <li>Designed similarity computation and ranking pipelines with configurable weighting.</li>
+              <li>Added diversity controls to improve catalog coverage and recommendation usefulness.</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Engineering considerations</h4>
+            <ul>
+              <li>Needed configurability for different storefront priorities.</li>
+              <li>Had to make recommendation quality understandable to product and client stakeholders.</li>
+              <li>Required a structure that could scale beyond a single narrow use case.</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Outcome</h4>
+            <ul>
+              <li>Improved cross-sell engagement.</li>
+              <li>Increased revenue contribution by 20%.</li>
+              <li>Created a stronger recommendation foundation for enterprise commerce use cases.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+      <article class="project" id="omnichannel">
+        <div class="project-header">
+          <div>
+            <h2>Omnichannel Data Integration for Personalization</h2>
+            <p class="muted">KIBO Software Inc. · Data pipeline and feature alignment</p>
+            <div class="pill-row"><span class="pill">Data ingestion</span><span class="pill">Feature
+                engineering</span><span class="pill">Personalization</span></div>
+          </div>
+          <div class="metric-chip">25–30% conversion gain</div>
+        </div>
+        <p class="summary">This effort expanded personalization by integrating offline purchase behavior into realtime
+          recommendation workflows, giving the system a fuller view of customer activity.</p>
+        <div class="case-grid">
+          <div class="block">
+            <h4>Problem</h4>
+            <ul>
+              <li>Online-only behavioral signals gave an incomplete picture of customer intent.</li>
+              <li>Offline purchase data needed to be integrated reliably into existing recommendation pipelines.</li>
+              <li>Feature alignment had to preserve data usefulness for personalization.</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Approach</h4>
+            <ul>
+              <li>Led end-to-end ingestion and transformation of offline purchase data.</li>
+              <li>Designed workflows to align online and in-store behavioral signals.</li>
+              <li>Enabled richer user representations for recommendation systems.</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Engineering considerations</h4>
+            <ul>
+              <li>Bridging offline and realtime data introduces consistency and data-modeling challenges.</li>
+              <li>The system had to remain practical for production recommendation pipelines.</li>
+              <li>Success needed to be visible through client conversion metrics.</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Outcome</h4>
+            <ul>
+              <li>Improved personalization accuracy.</li>
+              <li>Drove a 25–30% increase in client conversion metrics.</li>
+              <li>Expanded the quality and relevance of recommendation inputs.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+      <article class="project" id="coral-research">
+        <div class="project-header">
+          <div>
+            <h2>Object Detection in 3D Coral Ecosystem Maps</h2>
+            <p class="muted">University of Georgia · Published at ICPR 2022</p>
+            <div class="pill-row"><span class="pill">Computer vision</span><span class="pill">SLAM</span><span
+                class="pill">3D localization</span></div>
+          </div>
+          <div class="metric-chip">Published research</div>
+        </div>
+        <p class="summary">This research proposed a workflow for turning 2D image detections into accurate 3D coral
+          object localization within ecosystem maps built from multiple image sequences.</p>
+        <div class="case-grid">
+          <div class="block">
+            <h4>Problem</h4>
+            <ul>
+              <li>Ecological mapping benefits from 3D localization, but many strong detectors operate in 2D image space.
+              </li>
+              <li>A practical method was needed to convert 2D detections into meaningful 3D object representations.</li>
+              <li>The work needed benchmarking against established 3D approaches.</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Approach</h4>
+            <ul>
+              <li>Combined 2D detectors such as Faster R-CNN and RetinaNet with camera calibration and ray tracing.</li>
+              <li>Projected detections into a 3D SLAM-generated map.</li>
+              <li>Benchmarked against Frustum ConvNet and PointNet-style methods.</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Engineering considerations</h4>
+            <ul>
+              <li>The method had to reconcile 2D detection quality with spatial accuracy in 3D.</li>
+              <li>Camera calibration and mapping fidelity were central to the pipeline.</li>
+              <li>The research required balancing novelty, feasibility, and benchmarking rigor.</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Outcome</h4>
+            <ul>
+              <li>Enabled volumetric reef analysis through 3D object localization.</li>
+              <li>Highlighted performance trade-offs relative to established 3D methods.</li>
+              <li>Resulted in publication at the 26th International Conference on Pattern Recognition in 2022.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+  <footer>
+    <div class="container"></div>
+  </footer>
+  <script>(function () { const r = document.documentElement, b = document.querySelector('[data-theme-toggle]'); let t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; function d() { r.setAttribute('data-theme', t); b.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'); b.innerHTML = t === 'dark' ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>' : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>'; } d(); b.addEventListener('click', () => { t = t === 'dark' ? 'light' : 'dark'; d(); }); })();</script>
+</body>
+
+</html>
